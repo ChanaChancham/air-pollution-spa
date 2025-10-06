@@ -278,27 +278,27 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
-                        <img src="1.chana.png" alt="ดร.ชนะ จันทร์ฉ่ำ" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <img src="1.chana.jpg" alt="ดร.ชนะ จันทร์ฉ่ำ" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
                         <h4 class="font-bold">ดร.ชนะ จันทร์ฉ่ำ</h4>
                         <p class="text-sm text-gray-500">หัวหน้าโครงการ</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
-                        <img src="2.Jompob.png" alt="รศ.ดร.จอมภพ แววศักดิ์" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <img src="2.Jompob.jpg" alt="รศ.ดร.จอมภพ แววศักดิ์" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
                         <h4 class="font-bold">รศ.ดร.จอมภพ แววศักดิ์</h4>
                         <p class="text-sm text-gray-500">ผู้ร่วมโครงการ</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
-                        <img src="3.warich.png" alt="ผศ.ดร.วาริช วีระพันธ์" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <img src="3.warich.jpg" alt="ผศ.ดร.วาริช วีระพันธ์" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
                         <h4 class="font-bold">ผศ.ดร.วาริช วีระพันธ์</h4>
                         <p class="text-sm text-gray-500">ผู้ร่วมโครงการ</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
-                        <img src="4.Fatah.png" alt="อ.อับดุลฟาตะห์ มะสาแม" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <img src="4.Fatah.jpg" alt="อ.อับดุลฟาตะห์ มะสาแม" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
                         <h4 class="font-bold">อ.อับดุลฟาตะห์ มะสาแม</h4>
                         <p class="text-sm text-gray-500">ผู้ร่วมโครงการ</p>
                     </div>
                      <div class="bg-gray-50 p-4 rounded-lg col-span-2 lg:col-span-1 flex flex-col items-center">
-                        <img src="5.supagon.png" alt="นายศุภกร กตาธิการกุล" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <img src="5.supagon.jpg" alt="นายศุภกร กตาธิการกุล" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
                         <h4 class="font-bold">นายศุภกร กตาธิการกุล</h4>
                         <p class="text-sm text-gray-500">ผู้ร่วมโครงการ</p>
                     </div>
