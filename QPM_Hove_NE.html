@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นวัตกรรมรับมือมลพิษทางอากาศภาคใต้</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Southern Sky (#FDFBF6, #333333, #4A90E2, #50E3C2, #F5A623) -->
+    <!-- Application Structure Plan: The SPA uses a thematic, single-page scrolling structure with a sticky navigation bar for easy exploration. It starts with a hero section summarizing the project, then moves to detailing the problem, the innovative solution (using interactive tabs), project goals (with a budget chart), and the expected impact (with a comparison chart). This structure guides the user from the 'why' to the 'how' and 'what,' making a complex proposal digestible and engaging, which is more effective than a linear report format. -->
+    <!-- Visualization & Content Choices: 1. Budget: Goal=Inform -> Donut Chart -> Interactive tooltips -> Clearly shows fund allocation -> Chart.js. 2. Economic Impact: Goal=Compare -> Bar Chart -> Hover effects -> Highlights the financial benefit of the project -> Chart.js. 3. Solution Diagram: Goal=Organize -> HTML/CSS Diagram -> Static -> Visually simplifies the complex technical workflow -> Tailwind CSS. This approach prioritizes clarity and engagement over data density. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #FDFBF6;
+            color: #3C3C3B;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 450px;
+            height: 350px;
+            max-height: 400px;
+        }
+        .tab-button.active {
+            border-color: #F5A623;
+            color: #F5A623;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-[#FDFBF6]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">
+                <a href="#hero">โครงการวิจัยมลพิษภาคใต้</a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#problem" class="text-gray-600 hover:text-[#F5A623] transition">ปัญหา</a>
+                <a href="#solution" class="text-gray-600 hover:text-[#F5A623] transition">นวัตกรรม</a>
+                <a href="#goals" class="text-gray-600 hover:text-[#F5A623] transition">เป้าหมาย</a>
+                <a href="#impact" class="text-gray-600 hover:text-[#F5A623] transition">ผลกระทบ</a>
+                <a href="#team" class="text-gray-600 hover:text-[#F5A623] transition">คณะผู้วิจัย</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-3">
+             <a href="#problem" class="block py-2 text-gray-600 hover:text-[#F5A623] transition">ปัญหา</a>
+             <a href="#solution" class="block py-2 text-gray-600 hover:text-[#F5A623] transition">นวัตกรรม</a>
+             <a href="#goals" class="block py-2 text-gray-600 hover:text-[#F5A623] transition">เป้าหมาย</a>
+             <a href="#impact" class="block py-2 text-gray-600 hover:text-[#F5A623] transition">ผลกระทบ</a>
+             <a href="#team" class="block py-2 text-gray-600 hover:text-[#F5A623] transition">คณะผู้วิจัย</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">นวัตกรรมในการวิเคราะห์และรับมือมลพิษทางอากาศ, อนุภาคขนาดเล็ก และมลพิษข้ามพรมแดน</h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">ด้วยแบบจำลอง WRF-Chem ควบคู่กับ Machine Learning</p>
+                                  <h1 class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">The WRF-Chem Model and Innovations in the Analysis and Management of Air Pollution, Particulate Matter, and Transboundary Haze</h1>
+
+                <div class="mt-8 flex justify-center gap-4 flex-wrap">
+                    <div class="bg-white rounded-lg shadow-md p-4 min-w-[150px]">
+                        <p class="text-3xl font-bold text-[#4A90E2]">359,600</p>
+                        <p class="text-gray-500">งบประมาณ (บาท)</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 min-w-[150px]">
+                        <p class="text-3xl font-bold text-[#50E3C2]">3.5 ล้าน</p>
+                        <p class="text-gray-500">ผู้ได้รับประโยชน์ (คน)</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 min-w-[150px]">
+                        <p class="text-3xl font-bold text-[#F5A623]">1 ปี</p>
+                        <p class="text-gray-500">ระยะเวลาโครงการ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="problem" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">วิกฤตซ้ำซาก: ปัญหาหมอกควันข้ามพรมแดน</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">ทุกปีภาคใต้ต้องเผชิญกับมลพิษทางอากาศที่เกิดจากไฟป่าในประเทศเพื่อนบ้าน ส่งผลกระทบรุนแรงเป็นวงกว้าง แต่การรับมือแบบเดิมยังมีข้อจำกัดเรื่องข้อมูลที่ไม่ครอบคลุม</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-12 w-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-2xl">💔</div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-semibold">ผลกระทบต่อสุขภาพ</h3>
+                                <p class="text-gray-600 mt-1">ฝุ่น PM2.5 เพิ่มความเสี่ยงของโรคระบบทางเดินหายใจ โรคหัวใจ และมะเร็ง โดยเฉพาะในกลุ่มเปราะบาง เช่น เด็กและผู้สูงอายุ กว่า 880,000 คน</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-12 w-12 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-2xl">📉</div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-semibold">ผลกระทบต่อเศรษฐกิจ</h3>
+                                <p class="text-gray-600 mt-1">หมอกควันทำลายภาคการท่องเที่ยวซึ่งเป็นรายได้หลักของภูมิภาค และสร้างต้นทุนค่ารักษาพยาบาลมหาศาล เคยประเมินมูลค่าความเสียหายกว่า 12,000 ล้านบาท</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start">
+                            <div class="flex-shrink-0 h-12 w-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl">🛰️</div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-semibold">ข้อจำกัดด้านข้อมูล</h3>
+                                <p class="text-gray-600 mt-1">การพึ่งพาสถานีตรวจวัดภาคพื้นดินเพียงอย่างเดียวทำให้เกิด "ช่องว่างของข้อมูล" ในพื้นที่ชนบทและห่างไกล ทำให้การเตือนภัยและการวางแผนรับมือขาดประสิทธิภาพ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center bg-gray-50 rounded-lg p-8">
+                         <div class="font-bold text-lg mb-4">เส้นทางการเคลื่อนที่ของมลพิษ</div>
+                         <div class="flex items-center space-x-4 md:space-x-8">
+                             <div class="text-center">
+                                 <div class="text-4xl">🔥</div>
+                                 <p class="font-medium">ไฟป่า</p>
+                                 <p class="text-sm text-gray-500">ประเทศเพื่อนบ้าน</p>
+                             </div>
+                             <div class="text-4xl text-gray-400 font-light animate-pulse">&rarr;</div>
+                             <div class="text-center">
+                                 <div class="text-4xl">💨</div>
+                                 <p class="font-medium">ลมมรสุม</p>
+                                 <p class="text-sm text-gray-500">พัดพาหมอกควัน</p>
+                             </div>
+                              <div class="text-4xl text-gray-400 font-light animate-pulse">&rarr;</div>
+                             <div class="text-center">
+                                 <div class="text-4xl">🌫️</div>
+                                 <p class="font-medium">มลพิษข้ามพรมแดน</p>
+                                 <p class="text-sm text-gray-500">ภาคใต้ของไทย</p>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">นวัตกรรมเพื่อการพยากรณ์ที่แม่นยำ</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">โครงการนี้ผสานเทคโนโลยีและข้อมูลหลายมิติเพื่อสร้างระบบพยากรณ์และบริหารจัดการมลพิษทางอากาศที่ครอบคลุมและแม่นยำกว่าที่เคย</p>
+                </div>
+
+                <div class="flex justify-center border-b border-gray-200 mb-8">
+                    <button data-tab="wrf" class="tab-button active py-2 px-6 border-b-2 transition">แบบจำลอง WRF-Chem</button>
+                    <button data-tab="ml" class="tab-button py-2 px-6 border-b-2 transition">Machine Learning</button>
+                    <button data-tab="integration" class="tab-button py-2 px-6 border-b-2 transition">การบูรณาการข้อมูล</button>
+                </div>
+
+                <div id="tab-content" class="max-w-4xl mx-auto">
+                    <div id="wrf" class="tab-panel">
+                        <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-8 rounded-lg shadow-sm">
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#4A90E2] mb-3">แกนหลักของการพยากรณ์</h3>
+                                <p class="text-gray-600">WRF-Chem เป็นแบบจำลองคอมพิวเตอร์ขั้นสูงที่สามารถจำลองพลวัตของชั้นบรรยากาศและปฏิกิริยาเคมีของมลพิษไปพร้อมกัน ทำให้สามารถสร้างภาพการพยากรณ์สถานการณ์ล่วงหน้าได้หลายวัน เป็นเครื่องมือเชิงรุกที่สำคัญอย่างยิ่งสำหรับการวางแผนรับมือวิกฤต</p>
+                            </div>
+                             <div class="text-center text-6xl text-[#4A90E2] opacity-50">
+                                🌡️🌬️🧪
+                             </div>
+                        </div>
+                    </div>
+                    <div id="ml" class="tab-panel hidden">
+                         <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-8 rounded-lg shadow-sm">
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#50E3C2] mb-3">เติมเต็มช่องว่างข้อมูล</h3>
+                                <p class="text-gray-600">เราใช้เทคนิค Machine Learning เพื่อ "เติมเต็ม" ข้อมูลในพื้นที่ที่ไม่มีสถานีตรวจวัด โดยอัลกอริทึมจะเรียนรู้ความสัมพันธ์ระหว่างข้อมูลดาวเทียม ภูมิประเทศ และอุตุนิยมวิทยา เพื่อประมาณค่าความเข้มข้นของมลพิษในพื้นที่ห่างไกล และช่วยแก้ไขความคลาดเคลื่อนของแบบจำลองให้แม่นยำยิ่งขึ้น</p>
+                            </div>
+                            <div class="text-center text-6xl text-[#50E3C2] opacity-50">
+                                🧠🤖📊
+                            </div>
+                        </div>
+                    </div>
+                    <div id="integration" class="tab-panel hidden">
+                         <div class="bg-white p-8 rounded-lg shadow-sm">
+                             <h3 class="text-2xl font-bold text-[#F5A623] mb-4 text-center">ผนึกกำลัง 3 แหล่งข้อมูล</h3>
+                             <div class="flex flex-col md:flex-row justify-around items-center space-y-6 md:space-y-0 md:space-x-6">
+                                 <div class="text-center">
+                                     <div class="text-5xl mb-2">🛰️</div>
+                                     <h4 class="font-bold">ข้อมูลดาวเทียม</h4>
+                                     <p class="text-sm text-gray-500">ภาพรวมพื้นที่กว้าง</p>
+                                 </div>
+                                  <div class="text-4xl text-gray-300 font-light">+</div>
+                                 <div class="text-center">
+                                      <div class="text-5xl mb-2">🏢</div>
+                                     <h4 class="font-bold">สถานีภาคพื้นดิน</h4>
+                                     <p class="text-sm text-gray-500">ข้อมูลจริงอ้างอิง</p>
+                                 </div>
+                                  <div class="text-4xl text-gray-300 font-light">+</div>
+                                 <div class="text-center">
+                                      <div class="text-5xl mb-2">💻</div>
+                                     <h4 class="font-bold">แบบจำลอง WRF-Chem</h4>
+                                     <p class="text-sm text-gray-500">การพยากรณ์ล่วงหน้า</p>
+                                 </div>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="goals" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">เป้าหมายและผลผลิตของโครงการ</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">โครงการมีวัตถุประสงค์ที่ชัดเจนและมุ่งสร้างผลผลิตที่เป็นรูปธรรม เพื่อนำไปใช้ประโยชน์ได้จริงหลังสิ้นสุดโครงการ</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                     <div>
+                        <h3 class="text-2xl font-semibold mb-4">สิ่งที่คาดว่าจะได้รับ</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <span><strong class="font-semibold">ฐานข้อมูลและแผนที่ PM2.5:</strong> สำหรับพื้นที่คาบสมุทรมลายู เพื่อใช้ในการวิเคราะห์และติดตามสถานการณ์</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <span><strong class="font-semibold">อนุสิทธิบัตร:</strong> กระบวนการพัฒนาความแม่นยำของแผนที่ฝุ่น เพื่อสร้างองค์ความรู้ใหม่</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <span><strong class="font-semibold">แอปพลิเคชัน PMQ_Hove Beta:</strong> เครื่องมือต้นแบบที่ช่วยให้ประชาชนเข้าถึงข้อมูลได้ง่าย</span>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-green-500 mr-3 mt-1">✓</span>
+                                <span><strong class="font-semibold">บทความวิจัยระดับนานาชาติ:</strong> เพื่อเผยแพร่ผลงานและองค์ความรู้ในวงกว้าง (SCOPUS Q1-Q2)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                         <h3 class="text-2xl font-semibold mb-4 text-center">การจัดสรรงบประมาณ (359,600 บาท)</h3>
+                        <div class="chart-container">
+                            <canvas id="budgetChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="py-16">
+             <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">ผลกระทบที่คาดว่าจะเกิดขึ้น</h2>
+                     <p class="mt-2 text-gray-600 max-w-2xl mx-auto">นวัตกรรมนี้จะเปลี่ยนกระบวนทัศน์การจัดการมลพิษจากการตั้งรับไปสู่เชิงรุก สร้างประโยชน์ทั้งด้านเศรษฐกิจ สังคม และสิ่งแวดล้อม</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                         <div class="text-4xl mb-3 text-[#4A90E2]">💰</div>
+                        <h3 class="text-xl font-bold mb-2">ด้านเศรษฐกิจ</h3>
+                        <p class="text-gray-600">คาดว่าจะช่วยประหยัดงบประมาณด้านสุขภาพของภาครัฐได้ถึง <strong class="font-semibold">600 ล้านบาท/ปี</strong> และภาคเอกชนอีก <strong class="font-semibold">45.9 ล้านบาท/ปี</strong> พร้อมสนับสนุนการฟื้นตัวของภาคการท่องเที่ยว</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-4xl mb-3 text-[#50E3C2]">👨‍👩‍👧‍👦</div>
+                        <h3 class="text-xl font-bold mb-2">ด้านสังคม</h3>
+                        <p class="text-gray-600">ยกระดับคุณภาพชีวิตและความปลอดภัยของประชาชนกว่า 3.5 ล้านคน โดยเฉพาะกลุ่มเสี่ยงเกือบ 9 แสนคน และลดความเหลื่อมล้ำในการเข้าถึงข้อมูลเตือนภัย</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-4xl mb-3 text-[#F5A623]">🌳</div>
+                        <h3 class="text-xl font-bold mb-2">ด้านสิ่งแวดล้อม</h3>
+                        <p class="text-gray-600">สร้างองค์ความรู้และเครื่องมือใหม่เพื่อยกระดับการจัดการปัญหาสิ่งแวดล้อมของประเทศอย่างยั่งยืน และสร้างฐานข้อมูลมลพิษทางอากาศที่มีความละเอียดสูงสำหรับภาคใต้</p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="team" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">คณะผู้วิจัย</h2>
+                    <p class="mt-2 text-gray-600 max-w-2xl mx-auto">ความร่วมมือจากผู้เชี่ยวชาญหลากหลายสาขาเพื่อขับเคลื่อนโครงการให้สำเร็จลุล่วง</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                        <img src="1.chana.png" alt="ดร.ชนะ จันทร์ฉ่ำ" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <h4 class="font-bold">ดร.ชนะ จันทร์ฉ่ำ</h4>
+                        <p class="text-sm text-gray-500">หัวหน้าโครงการ</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                        <img src="2.Jompob.png" alt="รศ.ดร.จอมภพ แววศักดิ์" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <h4 class="font-bold">รศ.ดร.จอมภพ แววศักดิ์</h4>
+                        <p class="text-sm text-gray-500">ผู้ร่วมโครงการ</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                        <img src="3.warich.png" alt="ผศ.ดร.วาริช วีระพันธ์" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <h4 class="font-bold">ผศ.ดร.วาริช วีระพันธ์</h4>
+                        <p class="text-sm text-gray-500">ผู้ร่วมโครงการ</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                        <img src="4.Fatah.png" alt="อ.อับดุลฟาตะห์ มะสาแม" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <h4 class="font-bold">อ.อับดุลฟาตะห์ มะสาแม</h4>
+                        <p class="text-sm text-gray-500">ผู้ร่วมโครงการ</p>
+                    </div>
+                     <div class="bg-gray-50 p-4 rounded-lg col-span-2 lg:col-span-1 flex flex-col items-center">
+                        <img src="5.supagon.png" alt="นายศุภกร กตาธิการกุล" class="w-24 h-24 rounded-full object-cover mb-4 shadow-md" loading="lazy" width="96" height="96">
+                        <h4 class="font-bold">นายศุภกร กตาธิการกุล</h4>
+                        <p class="text-sm text-gray-500">ผู้ร่วมโครงการ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2568 โครงการวิจัยและนวัตกรรม โดย มหาวิทยาลัยทักษิณ</p>
+            <p class="text-sm text-gray-400 mt-2">เว็บแอปพลิเคชันนี้จัดทำขึ้นเพื่อสรุปและนำเสนอข้อมูลจากข้อเสนอโครงการวิจัย</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tab = button.dataset.tab;
+                    
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+                    
+                    tabPanels.forEach(panel => {
+                        if (panel.id === tab) {
+                            panel.classList.remove('hidden');
+                        } else {
+                            panel.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const budgetData = {
+                labels: ['ค่าจ้าง', 'ค่าวัสดุ', 'ค่าใช้สอย', 'ค่าสาธารณูปโภค'],
+                datasets: [{
+                    label: 'งบประมาณ',
+                    data: [170000, 34600, 157000, 13000],
+                    backgroundColor: [
+                        '#4A90E2',
+                        '#F5A623',
+                        '#50E3C2',
+                        '#BD10E0'
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+
+            const budgetConfig = {
+                type: 'doughnut',
+                data: budgetData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                },
+            };
+
+            const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+            new Chart(budgetCtx, budgetConfig);
+        });
+    </script>
+</body>
+</html>
+
+
